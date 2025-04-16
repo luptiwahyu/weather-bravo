@@ -1,5 +1,6 @@
 @import './base.css';
+@import 'tailwindcss';
 
 h1 {
-  color: red;
+  @apply text-3xl text-red-500 mb-4;
 }
