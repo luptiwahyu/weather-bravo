@@ -25,6 +25,8 @@ function applyTheme(): void {
 
 const isDarkMode = ref<boolean>(isNightTime())
 
+applyTheme()
+
 </script>
 
 <template>
@@ -67,7 +69,7 @@ p {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: blue;
+  @apply text-blue-500 dark:text-red-500;
 }
 
 .welcome__description {
