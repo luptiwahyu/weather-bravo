@@ -1,11 +1,30 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const title = ref('Hello Vue!')
+/* remove */
+const title = ref<string>('Hello Vue!')
 
 setTimeout(() => {
   title.value = 'Gracias!!'
 }, 2000)
+/* remove */
+
+function isNightTime(): boolean {
+  const hours = new Date().getHours()
+  return hours > 17 || hours < 6
+}
+
+function applyTheme(): void {
+  const html = document.querySelector('html') as HTMLHtmlElement
+  if (isDarkMode.value) {
+    html.classList.add('dark')
+  } else {
+    html.classList.remove('dark')
+  }
+}
+
+const isDarkMode = ref<boolean>(isNightTime())
+
 </script>
 
 <template>
