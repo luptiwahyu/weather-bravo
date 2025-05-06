@@ -10,11 +10,12 @@
   </svg>
 </template>
 
-<script setup>
-defineProps({
-  color: {
-    type: String,
-    default: 'white',
-  },
+<script setup lang="ts">
+interface Props {
+  color?: string
+}
+
+withDefaults(defineProps<Props>(), {
+  color: 'white',
 })
 </script>
