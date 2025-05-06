@@ -2,7 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
-/* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
   --vt-c-black: #181818;
@@ -21,18 +20,9 @@
   }
 }
 
-/*
 body {
   background-color: #4a7dff;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-optical-sizing: auto;
   color: var(--primary-text);
 }
-*/
-
-/* remove */
-body {
-  padding: 20px;
-  text-align: center;
-}
-/* remove */

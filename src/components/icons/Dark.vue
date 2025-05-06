@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
+type Props = {
   color?: string
 }
 

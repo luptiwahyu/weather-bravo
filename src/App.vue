@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-/* remove */
-const title = ref<string>('Hello Vue!')
-
-setTimeout(() => {
-  title.value = 'Gracias!!'
-}, 2000)
-/* remove */
+import { ref, computed } from 'vue'
+import Cloud from './components/icons/Cloud.vue'
+import Pin from './components/icons/Pin.vue'
+import Wind from './components/icons/Wind.vue'
+import Dark from './components/icons/Dark.vue'
+import Light from './components/icons/Light.vue'
 
 const isDarkMode = ref<boolean>(isNightTime())
 
@@ -25,6 +22,15 @@ function applyTheme(): void {
   }
 }
 
+const iconColor = computed<string>(() => {
+  return isDarkMode.value ? '#FFFFFF' : '#296399'
+})
+
+function onChangeTheme(): void {
+  isDarkMode.value = !isDarkMode.value
+  applyTheme()
+}
+
 function onCreated(): void {
   applyTheme()
 }
@@ -33,31 +39,48 @@ onCreated()
 </script>
 
 <template>
-  <div>
+  <div class="flex items-center justify-center h-screen">
     <div>
-      <h1>{{ title }}</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem temporibus eligendi dicta sit inventore quam
-        nostrum tempore repellat quas a repellendus maxime amet dignissimos explicabo blanditiis, maiores dolore rem
-        consequatur.
-      </p>
-    </div>
+      <div class="card">
+        <div class="grid grid-cols-2 gap-2 place-items-center">
+          <div>
+            <img class="h-32" src="/src/assets/icons/803-clouds-dn.svg" alt="weather-icon" />
+          </div>
+          <div>
+            <div class="text-7xl font-bold dark:text-slate-300">
+              <span>{{ 30 }}</span>
+              <span>°</span>
+            </div>
+            <div class="text-lg primary-text dark:text-[#6E85C1] mt-2">{{ 'Cloudy' }}</div>
+          </div>
+        </div>
 
-    <div class="mt-10">
-      <input
-        type="checkbox"
-        id="dark-mode"
-        class="mr-2"
-        v-model="isDarkMode"
-        @change="applyTheme"
-      />
-      <label for="dark-mode">Dark</label>
-    </div>
+        <div class="grid grid-cols-3 gap-3 place-items-center text-sm mt-10 mb-2" align="center">
+          <div>
+            <div title="Wind"><Wind class="size-5 mb-3" :color="iconColor" /></div>
+            <div class="caption dark:text-[#8497C9]">{{ 50 }} km/h</div>
+          </div>
+          <div>
+            <div title="Location"><Pin class="size-5 mb-3" :color="iconColor" /></div>
+            <div
+              class="caption dark:text-[#8497C9] break-all location-text"
+              :title="'Bandung'"
+            >
+              {{ 'Bandung' }}
+            </div>
+          </div>
+          <div>
+            <div title="Clouds"><Cloud class="size-5 mb-3" :color="iconColor" /></div>
+            <div class="caption dark:text-[#8497C9]">{{ 45 }}%</div>
+          </div>
+        </div>
+      </div>
 
-    <div class="welcome">
-      <div class="welcome__title">Welcome</div>
-      <div class="welcome__description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam deserunt saepe, rem ad eum, molestiae quae deleniti quam. Eius voluptas incidunt autem assumenda repudiandae sapiente dolorum ipsa nemo distinctio asperiores!
+      <div class="m-5 text-center" :title="`${ isDarkMode ? 'Light' : 'Dark' } Mode`">
+        <button class="m-auto p-1 cursor-pointer" @click="onChangeTheme">
+          <Light v-show="isDarkMode" />
+          <Dark v-show="!isDarkMode" />
+        </button>
       </div>
     </div>
   </div>
@@ -66,29 +89,13 @@ onCreated()
 <style scoped>
 @reference '@/assets/styles/main.css';
 
-p {
-  @apply text-xl text-green-600;
+.caption {
+  font-family: 'DM Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
 }
 
-.welcome {
-  width: 500px;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px;
-  @apply bg-yellow-200 dark:bg-slate-800;
-}
-
-.welcome__title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  @apply text-blue-500 dark:text-red-500;
-}
-
-.welcome__description {
-  color: gray;
-  font-style: italic;
-  @apply text-gray-700 dark:text-gray-300;
+.card {
+  @apply rounded-2xl px-4 py-10 m-5 drop-shadow-2xl w-80 bg-[#C9E5FF] dark:bg-[#1F2E54] transition-colors duration-300;
 }
 </style>
