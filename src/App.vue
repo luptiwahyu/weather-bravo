@@ -129,8 +129,6 @@ function fetchData(location: LatLon) {
         cloud: weather.clouds.all,
         icon: getWeatherIcon(weatherId),
       }
-
-      console.log('data: ', data)
     })
 }
 
