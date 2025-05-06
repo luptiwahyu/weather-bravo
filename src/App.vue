@@ -9,6 +9,8 @@ setTimeout(() => {
 }, 2000)
 /* remove */
 
+const isDarkMode = ref<boolean>(isNightTime())
+
 function isNightTime(): boolean {
   const hours = new Date().getHours()
   return hours > 17 || hours < 6
@@ -23,10 +25,11 @@ function applyTheme(): void {
   }
 }
 
-const isDarkMode = ref<boolean>(isNightTime())
+function onCreated(): void {
+  applyTheme()
+}
 
-applyTheme()
-
+onCreated()
 </script>
 
 <template>
@@ -38,6 +41,17 @@ applyTheme()
         nostrum tempore repellat quas a repellendus maxime amet dignissimos explicabo blanditiis, maiores dolore rem
         consequatur.
       </p>
+    </div>
+
+    <div class="mt-10">
+      <input
+        type="checkbox"
+        id="dark-mode"
+        class="mr-2"
+        v-model="isDarkMode"
+        @change="applyTheme"
+      />
+      <label for="dark-mode">Dark</label>
     </div>
 
     <div class="welcome">
@@ -58,11 +72,11 @@ p {
 
 .welcome {
   width: 500px;
-  background-color: yellow;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   padding: 30px;
+  @apply bg-yellow-200 dark:bg-slate-800;
 }
 
 .welcome__title {
@@ -75,5 +89,6 @@ p {
 .welcome__description {
   color: gray;
   font-style: italic;
+  @apply text-gray-700 dark:text-gray-300;
 }
 </style>
