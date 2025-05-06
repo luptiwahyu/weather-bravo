@@ -1,5 +1,6 @@
 {
   "name": "weather-beta",
+  "homepage": "https://luptiwahyu.github.io/weather-beta/",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,7 +11,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
