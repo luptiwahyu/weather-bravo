@@ -1,6 +1,6 @@
-# weather-beta
+## Weather Bravo
 
-This template should help get you started developing with Vue 3 in Vite.
+A weather app is a software application designed to provide users with information about current and future weather conditions.
 
 ## Tech Stack
 
