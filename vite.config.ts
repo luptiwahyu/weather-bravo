@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/weather-beta',
+  base: '/weather-bravo',
   plugins: [
     vue(),
     // vueDevTools(),
